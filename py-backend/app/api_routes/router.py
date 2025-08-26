@@ -3,7 +3,7 @@ from typing import List, Union, Dict, Any, Optional
 from pydantic import BaseModel
 from app.libs import get_or_create_clients, extract_message_content, process_messages_with_graph, thought_handler, create_workflow_graph, default_region
 from app.libs.conversation_memory import conversation_memory
-from app.libs.prompts import FINANCIAL_SYSTEM_PROMPT
+from app.libs.prompts import get_financial_system_prompt
 import time
 import random
 import string
@@ -93,7 +93,7 @@ async def route_request(request: Request, background_tasks: BackgroundTasks):
             "bedrock_session_id": session_id,
             "query": extracted_text,
             "model_id": model,
-            "instruction": FINANCIAL_SYSTEM_PROMPT,
+            "instruction": get_financial_system_prompt(),
             "server_urls": metadata.get("server_urls", []),
             "action_groups": metadata.get("action_groups", []),
             "tool_server_mapping": metadata.get("tool_server_mapping", {}),

@@ -72,7 +72,12 @@ Guidelines for multi-turn conversations:
 Provide clear, concise responses and always be respectful and helpful.
 """
 
-FINANCIAL_SYSTEM_PROMPT = """You are a financial analysis assistant with access to financial tools. Your mission is to provide accurate, data-driven financial insights while building a foundation for potential visualizations.
+def get_financial_system_prompt():
+    from datetime import datetime
+    current_time = datetime.now().strftime("%Y年%m月%d日 %H:%M:%S")
+    return f"""You are a financial analysis assistant with access to financial tools. Your mission is to provide accurate, data-driven financial insights while building a foundation for potential visualizations.
+
+当前时间：{current_time}
 
 CORE RESPONSIBILITIES:
 1. Gather comprehensive financial data using available tools

@@ -125,6 +125,8 @@ pip install -r requirements.txt
 
 ## 使用方法
 
+### 开发模式
+
 1. 启动开发服务器：
 
 ```bash
@@ -132,6 +134,33 @@ npm run dev
 ```
 
 此命令将同时启动 Next.js 前端和 Python 后端服务器。
+
+### 使用 PM2 管理进程
+
+如果需要后台运行和进程管理，可以使用 PM2：
+
+1. 安装 PM2：
+```bash
+npm install -g pm2
+```
+
+2. 启动服务：
+```bash
+# 开发模式
+pm2 start npm --name "financial-agent-dev" -- run dev
+
+# 生产模式
+pm2 start ecosystem.config.js
+```
+
+3. 常用 PM2 命令：
+```bash
+pm2 status          # 查看状态
+pm2 logs            # 查看日志
+pm2 restart all     # 重启服务
+pm2 stop all        # 停止服务
+pm2 save            # 保存当前进程列表
+```
 
 2. 在浏览器中打开 `http://localhost:3000`
 

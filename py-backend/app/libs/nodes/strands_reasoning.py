@@ -3,7 +3,7 @@ from typing import Dict, Any, List
 from app.libs.types import GraphState
 from app.libs.decorators import with_thought_callback, log_thought
 from app.libs.conversation_memory import conversation_memory
-from app.libs.prompts import FINANCIAL_SYSTEM_PROMPT
+from app.libs.prompts import get_financial_system_prompt
 from app.libs.mcp_client_factory import create_mcp_clients, MCPClientContext
 from strands.agent import Agent
 
@@ -110,7 +110,7 @@ async def execute_financial_analysis(state: GraphState) -> GraphState:
                     # Configure the Strands agent with proper tools and callbacks
                     agent = Agent(
                         model=model,
-                        system_prompt=FINANCIAL_SYSTEM_PROMPT,
+                        system_prompt=get_financial_system_prompt(),
                         messages=conversation_history[-10:] if conversation_history else [],
                         tools=all_tools,
                         callback_handler=callback
@@ -151,7 +151,7 @@ async def execute_financial_analysis(state: GraphState) -> GraphState:
                 callback = create_enhanced_callback_handler(session_id)
                 agent = Agent(
                     model=model,
-                    system_prompt=FINANCIAL_SYSTEM_PROMPT,
+                    system_prompt=get_financial_system_prompt(),
                     messages=conversation_history[-10:] if conversation_history else [],
                     callback_handler=callback
                 )
@@ -178,7 +178,7 @@ async def execute_financial_analysis(state: GraphState) -> GraphState:
             callback = create_enhanced_callback_handler(session_id)
             agent = Agent(
                 model=model,
-                system_prompt=FINANCIAL_SYSTEM_PROMPT,
+                system_prompt=get_financial_system_prompt(),
                 messages=conversation_history[-10:] if conversation_history else [],
                 callback_handler=callback
             )
