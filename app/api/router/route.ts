@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 
 // Configuration
-const BACKEND_URL = "http://localhost:8000/api/router";
+const BACKEND_URL = `${process.env.BACKEND_URL || 'http://localhost:8000'}/api/router`;
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
 const REQUEST_TIMEOUT = 10000; // 10 seconds

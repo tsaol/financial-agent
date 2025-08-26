@@ -123,7 +123,8 @@ const MessageComponentBase: React.FC<MessageComponentProps> = ({ message }) => {
   const downloadLinks = extractDownloadLinks(textContent.text);
 
   const handleDownload = (downloadPath: string, filename: string) => {
-    const fullUrl = `http://localhost:8000${downloadPath}`;
+    const backendUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+    const fullUrl = `${backendUrl}${downloadPath}`;
     const link = document.createElement('a');
     link.href = fullUrl;
     link.download = filename;

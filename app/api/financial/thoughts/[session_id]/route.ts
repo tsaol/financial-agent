@@ -60,7 +60,7 @@ export async function GET(req: NextRequest, { params }: { params: { session_id: 
         }
 
         try {
-          const backendUrl = `http://localhost:8000/api/financial/thoughts/${session_id}`;
+          const backendUrl = `${process.env.BACKEND_URL || 'http://localhost:8000'}/api/financial/thoughts/${session_id}`;
           console.log(`Attempting backend connection: ${backendUrl}`);
           
           const response = await connectWithRetry(backendUrl);

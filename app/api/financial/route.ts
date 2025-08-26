@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     
-    const routerResponse = await fetch("http://localhost:8000/router", {
+    const routerResponse = await fetch(`${process.env.BACKEND_URL || 'http://localhost:8000'}/router`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
