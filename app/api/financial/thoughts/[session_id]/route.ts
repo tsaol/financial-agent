@@ -20,8 +20,8 @@ async function connectWithRetry(backendUrl: string, maxAttempts = 5) {
   throw new Error('Failed to connect after maximum attempts');
 }
 
-export async function GET(req: NextRequest, { params }: { params: { session_id: string } }) {
-  const { session_id } = params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ session_id: string }> }) {
+  const { session_id } = await params;
 
   if (!session_id) {
     return new Response(JSON.stringify({ error: "Session ID is required" }), { 
