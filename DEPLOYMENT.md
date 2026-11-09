@@ -99,9 +99,8 @@ pip install -r requirements.txt
 # 方法 1: 使用 AWS CLI
 aws configure
 
-# 方法 2: 设置环境变量
-export AWS_ACCESS_KEY_ID=your_access_key
-export AWS_SECRET_ACCESS_KEY=your_secret_key
+# 方法 2: 使用已配置好的 profile（或 IAM 角色 / IAM Identity Center）
+export AWS_PROFILE=your-profile
 export AWS_DEFAULT_REGION=us-west-2
 ```
 
